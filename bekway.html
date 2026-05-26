@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bekway Healthcare Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-primary: #0F6E56;
+      --green-light: #E1F5EE;
+      --green-mid: #9FE1CB;
+      --green-dark: #085041;
+      --text-dark: #2C2C2A;
+      --text-muted: #5F5E5A;
+      --border-light: #d0e8e0;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 0.5px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 5%;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: var(--text-dark);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--green-primary); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text-dark); }
+
+    .btn-primary {
+      background: var(--green-primary);
+      color: var(--green-light);
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--green-dark); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-dark);
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      border: 0.5px solid #888780;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .btn-ghost:hover { background: #f5f5f4; }
+
+    /* SECTIONS */
+    section { padding: 5rem 5%; }
+    .sec-white { background: var(--white); }
+    .sec-green { background: var(--green-light); }
+    .sec-dark { background: var(--green-dark); }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-primary);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.12;
+      max-width: 580px;
+      margin-bottom: 1.25rem;
+      color: var(--text-dark);
+    }
+
+    h1 em { font-style: italic; color: var(--green-primary); }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(24px, 3.5vw, 32px);
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* HERO */
+    .hero-sub {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .trust-bar {
+      display: flex;
+      gap: 24px;
+      margin-top: 2.25rem;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .trust-item i { color: var(--green-primary); font-size: 16px; }
+
+    /* STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+    }
+
+    .stat-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 34px;
+      color: var(--green-primary);
+      margin-bottom: 0.3rem;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* CARDS */
+    .grid4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .card-green {
+      background: var(--green-light);
+      border: 0.5px solid var(--green-mid);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .card i, .card-green i {
+      font-size: 22px;
+      color: var(--green-primary);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .card h3, .card-green h3 {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: var(--text-dark);
+    }
+
+    .card p, .card-green p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .step-badge {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--green-dark);
+      background: var(--green-mid);
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 0.75rem;
+    }
+
+    /* FAQ */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .faq-item {
+      border-left: 2px solid var(--green-primary);
+      padding: 0.85rem 1rem;
+      background: var(--green-light);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .faq-q {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--green-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .faq-a {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* FORM */
+    .form-wrap {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 2.5rem;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .form-wrap h2 { margin-bottom: 0.5rem; }
+
+    .form-wrap p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.65;
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 8px;
+      border: 0.5px solid #888780;
+      background: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus { border-color: var(--green-primary); }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 0.75rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--green-dark);
+      padding: 3.5rem 5% 2rem;
+    }
+
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: var(--green-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-logo span { color: var(--green-mid); }
+
+    .footer-tag {
+      font-size: 13px;
+      color: var(--green-mid);
+      margin-bottom: 2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--green-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--green-light); }
+
+    .footer-bottom {
+      font-size: 12px;
+      color: #5DCAA5;
+      border-top: 0.5px solid var(--green-primary);
+      padding-top: 1.25rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .input-row { grid-template-columns: 1fr; }
+      .btn-row { flex-direction: column; align-items: flex-start; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION 1: NAV -->
+  <nav>
+    <a href="#" class="logo">Bek<span>way</span></a>
+    <div class="nav-links">
+      <a href="#why-partner">Why partner</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn-primary">Schedule a demo</a>
+    </div>
+  </nav>
+
+  <!-- SECTION 2: HERO -->
+  <section class="sec-white" id="home">
+    <span class="eyebrow">For home health agencies · Houston, TX</span>
+    <h1>Give your clients' families <em>real-time visibility</em> — without adding to your workload.</h1>
+    <p class="hero-sub">Bekway partners with home health agencies to offer smart home monitoring as a seamless add-on service. We handle everything. Your agency becomes indispensable to families.</p>
+    <div class="btn-row">
+      <a href="#contact" class="btn-primary">Schedule a free demo <i class="ti ti-arrow-right"></i></a>
+      <a href="#how-it-works" class="btn-ghost">See how it works</a>
+    </div>
+    <div class="trust-bar">
+      <div class="trust-item"><i class="ti ti-camera-off"></i> No cameras</div>
+      <div class="trust-item"><i class="ti ti-device-watch-off"></i> No wearables</div>
+      <div class="trust-item"><i class="ti ti-clock"></i> Installed in under 2 hours</div>
+      <div class="trust-item"><i class="ti ti-map-pin"></i> Serving Greater Houston</div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: STATS -->
+  <section class="sec-green">
+    <span class="section-label">By the numbers</span>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">&lt;2 hrs</div>
+        <div class="stat-label">Average install time per home</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">$0</div>
+        <div class="stat-label">Cost to your agency to partner</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Family visibility into loved one's activity</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5 yrs</div>
+        <div class="stat-label">Sensor battery life — no maintenance calls</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: WHY PARTNER -->
+  <section class="sec-white" id="why-partner">
+    <span class="section-label">Why partner with Bekway</span>
+    <h2>What's in it for your agency</h2>
+    <p class="section-sub">You already have the client relationships. We make those relationships stickier.</p>
+    <div class="grid4">
+      <div class="card">
+        <i class="ti ti-trophy"></i>
+        <h3>Competitive edge</h3>
+        <p>Offer something most agencies can't. Families choosing between providers remember the one that keeps them informed 24/7.</p>
+      </div>
+      <div class="card">
+        <i class="ti ti-phone-off"></i>
+        <h3>Fewer check-in calls</h3>
+        <p>When families can see activity in the app, they call your staff less. Real time saved for your care team every week.</p>
+      </div>
+      <div class="card">
+        <i class="ti ti-heart-handshake"></i>
+        <h3>Stronger family trust</h3>
+        <p>Families who feel informed are more satisfied — meaning better reviews and more referrals to your agency.</p>
+      </div>
+      <div class="card">
+        <i class="ti ti-cash"></i>
+        <h3>No cost, no risk</h3>
+        <p>We don't charge your agency anything. Clients pay us directly. You refer and we handle the rest.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: HOW IT WORKS -->
+  <section class="sec-green" id="how-it-works">
+    <span class="section-label">How the partnership works</span>
+    <h2>Simple for you. Powerful for families.</h2>
+    <p class="section-sub">Four steps from handshake to happy family — your team does one of them.</p>
+    <div class="grid4">
+      <div class="card-green">
+        <span class="step-badge">Your role</span>
+        <i class="ti ti-speakerphone"></i>
+        <h3>You refer</h3>
+        <p>When a family mentions worry or distance, you mention Bekway. One conversation is all it takes.</p>
+      </div>
+      <div class="card-green">
+        <span class="step-badge">Our role</span>
+        <i class="ti ti-clipboard-list"></i>
+        <h3>We consult</h3>
+        <p>We meet the family, assess the home, and recommend the right package — no obligation to anyone.</p>
+      </div>
+      <div class="card-green">
+        <span class="step-badge">Our role</span>
+        <i class="ti ti-tool"></i>
+        <h3>We install</h3>
+        <p>Everything installed in under 2 hours. No disruption to your care schedule or the client's routine.</p>
+      </div>
+      <div class="card-green">
+        <span class="step-badge">Everyone wins</span>
+        <i class="ti ti-bell"></i>
+        <h3>Family stays informed</h3>
+        <p>Real-time alerts go to family phones anywhere in the country. Your agency looks like the team that thought of everything.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: FAQ -->
+  <section class="sec-white" id="faq">
+    <span class="section-label">Common questions from agency directors</span>
+    <h2>We've heard your concerns</h2>
+    <p class="section-sub">Straight answers to what directors ask us most.</p>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <p class="faq-q">"Are there cameras involved?"</p>
+        <p class="faq-a">No cameras, ever. Only passive motion and door sensors. Seniors consistently prefer this — it feels like safety, not surveillance.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">"What if a sensor has an issue?"</p>
+        <p class="faq-a">We handle all support directly with the family. Your staff never fields a tech question — that's entirely our responsibility.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">"Does this create liability for us?"</p>
+        <p class="faq-a">No. We make no health claims. Bekway is a family notification service, not a clinical tool. Your agency simply refers.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">"What does my team do day to day?"</p>
+        <p class="faq-a">Nothing. Once you refer a client, we manage the entire relationship. Zero ongoing work for your care team.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">"What sensors do you use?"</p>
+        <p class="faq-a">YoLink smart sensors — up to 5-year battery life and long-range wireless that works reliably in older homes.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">"How do families get notified?"</p>
+        <p class="faq-a">Through a simple smartphone app. Up to 3 family members get real-time alerts from anywhere in the country.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: FORM -->
+  <section class="sec-green" id="contact">
+    <div class="form-wrap">
+      <h2>Ready to offer families something more?</h2>
+      <p>Schedule a free 20-minute demo. We'll walk you through the system and make it easy to get started. No commitment required.</p>
+      <form action="mailto:your@email.com" method="POST" enctype="text/plain">
+        <div class="input-row">
+          <input type="text" placeholder="Your name" name="name" required />
+          <input type="text" placeholder="Agency name" name="agency" required />
+        </div>
+        <input type="tel" placeholder="Phone number" name="phone" required />
+        <input type="email" placeholder="Email address" name="email" required />
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:13px;">
+          Request my free demo <i class="ti ti-arrow-right"></i>
+        </button>
+      </form>
+      <p class="form-note">We respond to all requests within 24 hours.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 8: FOOTER -->
+  <footer>
+    <div class="footer-logo">Bek<span>way</span></div>
+    <div class="footer-tag">Healthcare Solutions · Houston, TX</div>
+    <div class="footer-links">
+      <a href="#why-partner">Why partner</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-bottom">© 2026 Bekway Healthcare Solutions. Smart home monitoring — installed, supported, and managed for you.</div>
+  </footer>
+
+</body>
+</html>
