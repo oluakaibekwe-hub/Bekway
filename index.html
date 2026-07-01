@@ -4,20 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bekway Healthcare Solutions</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --green-primary: #0F6E56;
-      --green-light: #E1F5EE;
+      --green-light: #E8F8F2;
       --green-mid: #9FE1CB;
       --green-dark: #085041;
-      --text-dark: #2C2C2A;
-      --text-muted: #5F5E5A;
-      --border-light: #d0e8e0;
+      --green-soft: #F4FBF8;
+      --text-dark: #1E1E1C;
+      --text-muted: #6B6A66;
+      --border-light: #D6EDE4;
       --white: #FFFFFF;
+      --radius-card: 16px;
+      --radius-btn: 10px;
     }
 
     html { scroll-behavior: smooth; }
@@ -26,7 +28,8 @@
       font-family: 'DM Sans', sans-serif;
       color: var(--text-dark);
       background: var(--white);
-      line-height: 1.6;
+      line-height: 1.7;
+      font-size: 16px;
     }
 
     /* NAV */
@@ -34,8 +37,9 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: var(--white);
-      border-bottom: 0.5px solid var(--border-light);
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-light);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -46,16 +50,17 @@
 
     .logo {
       font-family: 'DM Serif Display', serif;
-      font-size: 22px;
+      font-size: 23px;
       color: var(--text-dark);
       text-decoration: none;
+      letter-spacing: -0.3px;
     }
 
     .logo span { color: var(--green-primary); }
 
     .nav-links {
       display: flex;
-      gap: 24px;
+      gap: 28px;
       align-items: center;
       flex-wrap: wrap;
     }
@@ -65,16 +70,17 @@
       color: var(--text-muted);
       text-decoration: none;
       transition: color 0.2s;
+      font-weight: 400;
     }
 
     .nav-links a:hover { color: var(--text-dark); }
-    .nav-links a.btn-primary { color: var(--green-light); }
+    .nav-links a.btn-primary { color: #fff; }
 
     .btn-primary {
       background: var(--green-primary);
-      color: var(--green-light);
-      padding: 10px 22px;
-      border-radius: 8px;
+      color: #fff;
+      padding: 11px 24px;
+      border-radius: var(--radius-btn);
       font-size: 14px;
       font-weight: 500;
       border: none;
@@ -84,89 +90,148 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.01em;
     }
 
-    .btn-primary:hover { background: var(--green-dark); }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
 
     .btn-ghost {
       background: transparent;
       color: var(--text-dark);
-      padding: 10px 22px;
-      border-radius: 8px;
+      padding: 11px 24px;
+      border-radius: var(--radius-btn);
       font-size: 14px;
       font-weight: 500;
-      border: 0.5px solid #888780;
+      border: 1px solid #C8C7C2;
       cursor: pointer;
       font-family: 'DM Sans', sans-serif;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: background 0.2s;
+      transition: background 0.2s, border-color 0.2s;
     }
 
-    .btn-ghost:hover { background: #f5f5f4; }
+    .btn-ghost:hover { background: var(--green-soft); border-color: var(--green-primary); color: var(--green-primary); }
 
     /* SECTIONS */
-    section { padding: 5rem 5%; }
+    section { padding: 5.5rem 5%; }
     .sec-white { background: var(--white); }
     .sec-green { background: var(--green-light); }
+    .sec-soft { background: var(--green-soft); }
     .sec-dark { background: var(--green-dark); }
 
     .eyebrow {
       font-size: 11px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--green-primary);
-      font-weight: 500;
+      font-weight: 600;
       margin-bottom: 1rem;
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 2px;
+      background: var(--green-primary);
+      border-radius: 2px;
     }
 
     .section-label {
       font-size: 11px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-muted);
-      font-weight: 500;
-      margin-bottom: 0.5rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
       display: block;
     }
 
     h1 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(32px, 5vw, 48px);
-      line-height: 1.12;
-      max-width: 580px;
-      margin-bottom: 1.25rem;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.1;
+      max-width: 620px;
+      margin-bottom: 1.4rem;
       color: var(--text-dark);
+      letter-spacing: -0.5px;
     }
 
     h1 em { font-style: italic; color: var(--green-primary); }
 
     h2 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(24px, 3.5vw, 32px);
-      margin-bottom: 0.5rem;
+      font-size: clamp(26px, 3.5vw, 36px);
+      margin-bottom: 0.6rem;
       color: var(--text-dark);
+      letter-spacing: -0.3px;
+      line-height: 1.2;
     }
 
     .section-sub {
       font-size: 16px;
       color: var(--text-muted);
-      max-width: 500px;
-      margin-bottom: 2.5rem;
-      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 2.75rem;
+      line-height: 1.75;
     }
 
     /* HERO */
+    .hero-wrap {
+      max-width: 680px;
+    }
+
     .hero-sub {
-      font-size: 17px;
+      font-size: 16px;
       color: var(--text-muted);
-      max-width: 500px;
+      max-width: 560px;
       margin-bottom: 2rem;
-      line-height: 1.75;
+      line-height: 1.8;
+    }
+
+    .hero-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 2.5rem 0;
+      max-width: 680px;
+    }
+
+    .hero-feature {
+      background: var(--green-soft);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-card);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .hero-feature i {
+      font-size: 20px;
+      color: var(--green-primary);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .hero-feature-text strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 3px;
+    }
+
+    .hero-feature-text span {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
     }
 
     .btn-row {
@@ -178,9 +243,11 @@
 
     .trust-bar {
       display: flex;
-      gap: 24px;
-      margin-top: 2.25rem;
+      gap: 20px;
+      margin-top: 2.5rem;
       flex-wrap: wrap;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-light);
     }
 
     .trust-item {
@@ -189,123 +256,142 @@
       gap: 7px;
       font-size: 13px;
       color: var(--text-muted);
+      font-weight: 400;
     }
 
-    .trust-item i { color: var(--green-primary); font-size: 16px; }
+    .trust-item i { color: var(--green-primary); font-size: 15px; }
 
     /* STATS */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
     }
 
     .stat-card {
       background: var(--white);
-      border-radius: 10px;
-      padding: 1.25rem;
+      border-radius: var(--radius-card);
+      padding: 1.5rem;
+      border: 1px solid var(--border-light);
     }
 
     .stat-num {
       font-family: 'DM Serif Display', serif;
-      font-size: 34px;
+      font-size: 38px;
       color: var(--green-primary);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
       line-height: 1;
     }
 
     .stat-label {
       font-size: 13px;
       color: var(--text-muted);
-      line-height: 1.45;
+      line-height: 1.5;
     }
 
     /* CARDS */
     .grid4 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
     }
 
     .card {
       background: var(--white);
-      border: 0.5px solid var(--border-light);
-      border-radius: 12px;
-      padding: 1.5rem;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-card);
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
     }
+
+    .card:hover { border-color: var(--green-mid); transform: translateY(-2px); }
 
     .card-green {
-      background: var(--green-light);
-      border: 0.5px solid var(--green-mid);
-      border-radius: 12px;
-      padding: 1.5rem;
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-card);
+      padding: 1.75rem;
+      transition: border-color 0.2s;
     }
 
+    .card-green:hover { border-color: var(--green-primary); }
+
     .card i, .card-green i {
-      font-size: 22px;
+      font-size: 20px;
       color: var(--green-primary);
-      display: block;
+      display: inline-block;
+      line-height: 1;
       margin-bottom: 0.75rem;
     }
 
     .card h3, .card-green h3 {
       font-size: 15px;
-      font-weight: 500;
-      margin-bottom: 0.4rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
       color: var(--text-dark);
+      line-height: 1.4;
     }
 
     .card p, .card-green p {
       font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
-    .step-badge {
-      font-size: 11px;
+    .step-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 13px;
       font-weight: 500;
-      color: var(--green-dark);
-      background: var(--green-mid);
-      display: inline-block;
-      padding: 3px 10px;
+      color: var(--green-primary);
+      background: var(--green-light);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
       border-radius: 20px;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-light);
     }
 
     /* FAQ */
     .faq-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
     }
 
     .faq-item {
-      border-left: 2px solid var(--green-primary);
-      padding: 0.85rem 1rem;
-      background: var(--green-light);
-      border-radius: 0 8px 8px 0;
+      border: 1px solid var(--border-light);
+      padding: 1.25rem 1.5rem;
+      background: var(--white);
+      border-radius: var(--radius-card);
+      transition: border-color 0.2s;
     }
+
+    .faq-item:hover { border-color: var(--green-primary); }
 
     .faq-q {
       font-size: 14px;
-      font-weight: 500;
-      color: var(--green-dark);
-      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
     }
 
     .faq-a {
       font-size: 13px;
       color: var(--text-muted);
-      line-height: 1.55;
+      line-height: 1.65;
     }
 
     /* FORM */
     .form-wrap {
       background: var(--white);
-      border-radius: 14px;
-      padding: 2.5rem;
-      max-width: 520px;
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 540px;
       margin: 0 auto;
+      border: 1px solid var(--border-light);
     }
 
     .form-wrap h2 { margin-bottom: 0.5rem; }
@@ -313,8 +399,8 @@
     .form-wrap p {
       font-size: 15px;
       color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.65;
+      margin-bottom: 2rem;
+      line-height: 1.7;
     }
 
     .input-row {
@@ -328,38 +414,38 @@
     input[type="email"],
     input[type="tel"] {
       width: 100%;
-      padding: 11px 14px;
-      border-radius: 8px;
-      border: 0.5px solid #888780;
+      padding: 12px 16px;
+      border-radius: var(--radius-btn);
+      border: 1px solid #C8C7C2;
       background: var(--white);
       font-family: 'DM Sans', sans-serif;
       font-size: 14px;
       color: var(--text-dark);
       margin-bottom: 10px;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    input:focus { border-color: var(--green-primary); }
+    input:focus { border-color: var(--green-primary); box-shadow: 0 0 0 3px rgba(15,110,86,0.08); }
 
     .form-note {
       font-size: 12px;
       color: var(--text-muted);
       text-align: center;
-      margin-top: 0.75rem;
+      margin-top: 1rem;
     }
 
     /* FOOTER */
     footer {
       background: var(--green-dark);
-      padding: 3.5rem 5% 2rem;
+      padding: 4rem 5% 2.5rem;
     }
 
     .footer-logo {
       font-family: 'DM Serif Display', serif;
-      font-size: 22px;
+      font-size: 24px;
       color: var(--green-light);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.3rem;
     }
 
     .footer-logo span { color: var(--green-mid); }
@@ -367,14 +453,15 @@
     .footer-tag {
       font-size: 13px;
       color: var(--green-mid);
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.8;
     }
 
     .footer-links {
       display: flex;
-      gap: 20px;
+      gap: 24px;
       flex-wrap: wrap;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .footer-links a {
@@ -382,15 +469,17 @@
       color: var(--green-mid);
       text-decoration: none;
       transition: color 0.2s;
+      opacity: 0.8;
     }
 
-    .footer-links a:hover { color: var(--green-light); }
+    .footer-links a:hover { color: var(--green-light); opacity: 1; }
 
     .footer-bottom {
       font-size: 12px;
       color: #5DCAA5;
-      border-top: 0.5px solid var(--green-primary);
-      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+      opacity: 0.7;
     }
 
     /* RESPONSIVE */
@@ -398,12 +487,13 @@
       .input-row { grid-template-columns: 1fr; }
       .btn-row { flex-direction: column; align-items: flex-start; }
       .nav-links { display: none; }
+      .form-wrap { padding: 2rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- SECTION 1: NAV -->
+  <!-- NAV -->
   <nav>
     <a href="#" class="logo">Bek<span>way</span></a>
     <div class="nav-links">
@@ -415,27 +505,58 @@
     </div>
   </nav>
 
-<!-- SECTION 2: HERO -->
-<section class="sec-white" id="home">
-  <span class="eyebrow">For home health agencies · Houston, TX</span>
-  <h1>Help your clients live<br><em>independently longer</em> with smart home monitoring that keeps their families informed from anywhere.</h1>
-  <!--
-  <p class="hero-sub">Seniors stay independent longer. Families stay connected from anywhere. Your agency gets the loyalty, revenue, and reputation that comes with going above and beyond.</p>
- -->
-  <p class="hero-sub" style="font-size:15px; margin-top:-0.75rem;">Bekway partners with home health agencies to provide families and care teams with real-time visibility into their loved one's daily activity. Our passive, camera-free monitoring systems are professionally installed and managed, enabling seniors to live independently longer while keeping the people who care for them informed from anywhere in the world.</p>
-  <div class="btn-row">
-    <a href="#contact" class="btn-primary">Schedule a free demo <i class="ti ti-arrow-right"></i></a>
-    <a href="#how-it-works" class="btn-ghost">See how it works</a>
-  </div>
-  <div class="trust-bar">
-    <div class="trust-item"><i class="ti ti-camera-off"></i> No cameras</div>
-    <div class="trust-item"><i class="ti ti-device-watch-off"></i> No wearables</div>
-    <div class="trust-item"><i class="ti ti-clock"></i> Installed in under 1 hours</div>
-    <div class="trust-item"><i class="ti ti-map-pin"></i> Currently serving the Houston Area </div>
-  </div>
-</section>
+  <!-- HERO -->
+  <section class="sec-white" id="home">
+    <div class="hero-wrap">
+      <span class="eyebrow">For home health agencies · Houston, TX</span>
+      <h1>Help your clients live<br><em>independently longer</em> with home activity monitoring that keeps their families informed from anywhere.</h1>
+      <p class="hero-sub">Families of your clients spend their days wondering if their loved one is okay. Bekway answers that question for them — quietly, passively, and without disrupting anyone's routine. We partner with home health agencies to provide a camera-free home activity monitoring system that learns a client's daily patterns and keeps their family informed in real time, from anywhere in the world.</p>
 
-  <!-- SECTION 3: STATS -->
+      <div class="hero-features">
+        <div class="hero-feature">
+          
+          <div class="hero-feature-text">
+            <strong>Learns daily routines</strong>
+            <span>The system recognizes normal patterns and alerts family when something seems off.</span>
+          </div>
+        </div>
+        <div class="hero-feature">
+          
+          <div class="hero-feature-text">
+            <strong>Real-time alerts</strong>
+            <span>Families receive instant notifications for inactivity, unusual patterns, or door activity.</span>
+          </div>
+        </div>
+        <div class="hero-feature">
+          
+          <div class="hero-feature-text">
+            <strong>Completely passive</strong>
+            <span>No cameras, no wearables. Clients simply live their lives — nothing changes for them.</span>
+          </div>
+        </div>
+        <div class="hero-feature">
+          
+          <div class="hero-feature-text">
+            <strong>We handle everything</strong>
+            <span>Professional installation, onboarding, and ongoing support — your staff does none of it.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <a href="#contact" class="btn-primary">Schedule a free demo </a>
+        <a href="#how-it-works" class="btn-ghost">See how it works</a>
+      </div>
+      <div class="trust-bar">
+        <div class="trust-item"> No cameras</div>
+        <div class="trust-item"> No wearables</div>
+        <div class="trust-item"> Installed in under 1 hour</div>
+        <div class="trust-item"> Serving the Houston Area</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
   <section class="sec-green">
     <span class="section-label">By the numbers</span>
     <div class="stats-grid">
@@ -449,155 +570,147 @@
       </div>
       <div class="stat-card">
         <div class="stat-num">24/7</div>
-        <div class="stat-label">Family visibility into loved one's activity</div>
+        <div class="stat-label">Family visibility into their loved one's activity</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">70M+ </div>
-        <div class="stat-label">Americans over 65 by 2030 signifies a growing need for remote monitoring</div>
+        <div class="stat-num">70M+</div>
+        <div class="stat-label">Americans over 65 by 2030 — a growing need for remote monitoring</div>
       </div>
     </div>
   </section>
 
-<!-- SECTION 3B: PACKAGES -->
-<section class="sec-white" id="packages" style="display:none;">
-  <span class="section-label">Service packages</span>
-  <h2>Simple, transparent pricing</h2>
-  <p class="section-sub">One-time setup fee plus a monthly subscription. Every package includes professional installation and ongoing support.</p>
-  <div class="grid4" style="align-items:start;">
-
-    <div class="card">
-      <h3 style="font-size:18px;">Basic</h3>
-      <div style="font-family:'DM Serif Display',serif;font-size:36px;color:#0F6E56;margin:0.5rem 0 0.25rem;">$39<span style="font-size:16px;font-family:'DM Sans',sans-serif;font-weight:300;">/mo</span></div>
-      <div style="font-size:13px;color:#5F5E5A;margin-bottom:1.25rem;">+ $199 one-time setup</div>
-      <p style="font-size:13px;color:#5F5E5A;margin-bottom:1rem;line-height:1.6;">For families who want simple daily activity confirmation at an affordable price.</p>
-      <ul style="list-style:none;padding:0;margin:0;border-top:0.5px solid #d0e8e0;">
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>1 Central monitoring hub</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>2 motion sensors — bedroom and kitchen</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>1 door sensor — main entry</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Family app — up to 2 members</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Morning activity confirmation alert</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Inactivity alerts</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Email and text support</li>
-      </ul>
+  <!-- PACKAGES (hidden) -->
+  <section class="sec-white" id="packages" style="display:none;">
+    <span class="section-label">Service packages</span>
+    <h2>Simple, transparent pricing</h2>
+    <p class="section-sub">One-time setup fee plus a monthly subscription. Every package includes professional installation and ongoing support.</p>
+    <div class="grid4" style="align-items:start;">
+      <div class="card">
+        <h3 style="font-size:18px;">Basic</h3>
+        <div style="font-family:'DM Serif Display',serif;font-size:36px;color:#0F6E56;margin:0.5rem 0 0.25rem;">$39<span style="font-size:16px;font-family:'DM Sans',sans-serif;font-weight:300;">/mo</span></div>
+        <div style="font-size:13px;color:#5F5E5A;margin-bottom:1.25rem;">+ $199 one-time setup</div>
+        <p style="font-size:13px;color:#5F5E5A;margin-bottom:1rem;line-height:1.6;">For families who want simple daily activity confirmation at an affordable price.</p>
+        <ul style="list-style:none;padding:0;margin:0;border-top:1px solid #d0e8e0;">
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">1 Central monitoring hub</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">2 motion sensors — bedroom and kitchen</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">1 door sensor — main entry</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">Family app — up to 2 members</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">Morning activity confirmation alert</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">Inactivity alerts</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;display:flex;gap:8px;align-items:flex-start;">Email and text support</li>
+        </ul>
+      </div>
+      <div class="card" style="border:2px solid #0F6E56;">
+        <div style="font-size:11px;background:#E1F5EE;color:#085041;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:0.75rem;font-weight:600;">Most popular</div>
+        <h3 style="font-size:18px;">Complete</h3>
+        <div style="font-family:'DM Serif Display',serif;font-size:36px;color:#0F6E56;margin:0.5rem 0 0.25rem;">$59<span style="font-size:16px;font-family:'DM Sans',sans-serif;font-weight:300;">/mo</span></div>
+        <div style="font-size:13px;color:#5F5E5A;margin-bottom:1.25rem;">+ $299 one-time setup</div>
+        <p style="font-size:13px;color:#5F5E5A;margin-bottom:1rem;line-height:1.6;">For families who want broader visibility and detailed activity patterns across the home.</p>
+        <ul style="list-style:none;padding:0;margin:0;border-top:1px solid #d0e8e0;">
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">1 Central monitoring hub</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">3 motion sensors — bedroom, kitchen, living room</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">2 door sensors — main entry and back door</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">Family app — up to 3 members</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">All Basic alerts included</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">Door open and close notifications</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">Customizable alert schedules</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">Weekly activity summary report</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;display:flex;gap:8px;align-items:flex-start;">Phone and email support</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="font-size:18px;">Premium</h3>
+        <div style="font-family:'DM Serif Display',serif;font-size:36px;color:#0F6E56;margin:0.5rem 0 0.25rem;">$89<span style="font-size:16px;font-family:'DM Sans',sans-serif;font-weight:300;">/mo</span></div>
+        <div style="font-size:13px;color:#5F5E5A;margin-bottom:1.25rem;">+ $399 one-time setup</div>
+        <p style="font-size:13px;color:#5F5E5A;margin-bottom:1rem;line-height:1.6;">For families and care teams who need comprehensive monitoring and a hands-on support relationship.</p>
+        <ul style="list-style:none;padding:0;margin:0;border-top:1px solid #d0e8e0;">
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">1 Central monitoring hub</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">4 motion sensors — bedroom, kitchen, living room, hallway</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">2 door sensors — main entry and back door</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">Family app — up to 5 members including care team</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">All Complete alerts included</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">Care team notification portal</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">Monthly activity report with pattern analysis</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">Monthly check-in call with family or care coordinator</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">Quarterly in-person system inspection</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;border-bottom:1px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;">Priority support — 4 hour response guarantee</li>
+          <li style="font-size:13px;color:#5F5E5A;padding:7px 0;display:flex;gap:8px;align-items:flex-start;">Battery replacement included</li>
+        </ul>
+      </div>
     </div>
+  </section>
 
-    <div class="card" style="border:2px solid #0F6E56;">
-      <div style="font-size:11px;background:#E1F5EE;color:#085041;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:0.75rem;font-weight:500;">Most popular</div>
-      <h3 style="font-size:18px;">Complete</h3>
-      <div style="font-family:'DM Serif Display',serif;font-size:36px;color:#0F6E56;margin:0.5rem 0 0.25rem;">$59<span style="font-size:16px;font-family:'DM Sans',sans-serif;font-weight:300;">/mo</span></div>
-      <div style="font-size:13px;color:#5F5E5A;margin-bottom:1.25rem;">+ $299 one-time setup</div>
-      <p style="font-size:13px;color:#5F5E5A;margin-bottom:1rem;line-height:1.6;">For families who want broader visibility and detailed activity patterns across the home.</p>
-      <ul style="list-style:none;padding:0;margin:0;border-top:0.5px solid #d0e8e0;">
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>1 Central monitoring hub</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>3 motion sensors — bedroom, kitchen, living room</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>2 door sensors — main entry and back door</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Family app — up to 3 members</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>All Basic alerts included</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Door open and close notifications</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Customizable alert schedules</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Weekly activity summary report</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Phone and email support</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3 style="font-size:18px;">Premium</h3>
-      <div style="font-family:'DM Serif Display',serif;font-size:36px;color:#0F6E56;margin:0.5rem 0 0.25rem;">$89<span style="font-size:16px;font-family:'DM Sans',sans-serif;font-weight:300;">/mo</span></div>
-      <div style="font-size:13px;color:#5F5E5A;margin-bottom:1.25rem;">+ $399 one-time setup</div>
-      <p style="font-size:13px;color:#5F5E5A;margin-bottom:1rem;line-height:1.6;">For families and care teams who need comprehensive monitoring and a hands-on support relationship.</p>
-      <ul style="list-style:none;padding:0;margin:0;border-top:0.5px solid #d0e8e0;">
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>1 Central monitoring hub</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>4 motion sensors — bedroom, kitchen, living room, hallway</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>2 door sensors — main entry and back door</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Family app — up to 5 members including care team</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>All Complete alerts included</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Care team notification portal</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Monthly activity report with pattern analysis</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Monthly check-in call with family or care coordinator</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Quarterly in-person system inspection</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;border-bottom:0.5px solid #d0e8e0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Priority support — 4 hour response guarantee</li>
-        <li style="font-size:13px;color:#5F5E5A;padding:6px 0;display:flex;gap:8px;align-items:flex-start;"><i class="ti ti-check" style="color:#0F6E56;flex-shrink:0;"></i>Battery replacement included</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-
-  
-  <!-- SECTION 4: WHY PARTNER -->
-  <section class="sec-white" id="why-partner">
+  <!-- WHY PARTNER -->
+  <section class="sec-soft" id="why-partner">
     <span class="section-label">Why partner with Bekway</span>
-    <h2>What's in it for your agency</h2>
-    <p class="section-sub">You already have the client relationships. We make those relationships stickier.</p>
+    <h2>What your agency gains</h2>
+    <p class="section-sub">You've already built the trust with your clients. Bekway helps you do more with it — without adding work for your team.</p>
     <div class="grid4">
       <div class="card">
-        <i class="ti ti-trophy"></i>
-        <h3>Competitive edge</h3>
-        <p>Offer something most agencies can't. Families choosing between providers remember the one that keeps them informed 24/7.</p>
+        
+        <h3>Stand out from other agencies</h3>
+        <p>Most agencies offer the same core services. Bekway gives you something meaningful to add — a real differentiator that families remember when choosing who to trust with their loved one's care.</p>
       </div>
       <div class="card">
-        <i class="ti ti-phone-off"></i>
-        <h3>Fewer check-in calls</h3>
-        <p>When families can see activity in the app, they call your staff less. Real time saved for your care team every week.</p>
+        
+        <h3>Fewer anxious calls to your staff</h3>
+        <p>When families can see that mom made coffee this morning or that dad's door opened at his usual time, they don't need to call your office to check in. That's real time back for your care team every single week.</p>
       </div>
       <div class="card">
-        <i class="ti ti-heart-handshake"></i>
-        <h3>Stronger family trust</h3>
-        <p>Families who feel informed are more satisfied — meaning better reviews and more referrals to your agency.</p>
+        
+        <h3>Stronger relationships with families</h3>
+        <p>Families who feel informed and supported are more loyal, more likely to leave positive reviews, and more likely to refer friends to your agency. Bekway helps you deliver that experience without extra effort.</p>
       </div>
       <div class="card">
-        <i class="ti ti-cash"></i>
-        <h3>Zero risk to your agency</h3>
-        <p>Partnering with Bekway costs your agency nothing. We work alongside your team, handle everything independently, and your clients get a service that makes your agency stand out.</p>
+        
+        <h3>Passive monthly income, zero cost</h3>
+        <p>Partnering with Bekway costs your agency nothing. We pay you a monthly recurring fee for every active client you refer. You refer once — we handle installation, support, and everything in between.</p>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 5: HOW IT WORKS -->
-  <section class="sec-green" id="how-it-works">
+  <!-- HOW IT WORKS -->
+  <section class="sec-white" id="how-it-works">
     <span class="section-label">How the partnership works</span>
     <h2>Simple for you. Powerful for families.</h2>
-    <p class="section-sub">Four steps from handshake to happy family — your team does one of them.</p>
+    <p class="section-sub">Four steps from handshake to happy family — your team is only responsible for one of them.</p>
     <div class="grid4">
       <div class="card-green">
-        <span class="step-badge">Your role</span>
-        <i class="ti ti-speakerphone"></i>
+        <span class="step-num">01 · Your role</span>
+        
         <h3>You refer</h3>
-        <p>When a family mentions worry or distance, you mention Bekway. One conversation is all it takes.</p>
+        <p>When a family mentions worry or distance, you mention Bekway. One conversation is all it takes — we handle everything from there.</p>
       </div>
       <div class="card-green">
-        <span class="step-badge">Our role</span>
-        <i class="ti ti-clipboard-list"></i>
+        <span class="step-num">02 · Our role</span>
+        
         <h3>We consult</h3>
-        <p>We meet the family, assess the home, and recommend the right package — no obligation to anyone.</p>
+        <p>We meet the family, walk through the home, and recommend the right setup — no pressure, no obligation to anyone.</p>
       </div>
       <div class="card-green">
-        <span class="step-badge">Our role</span>
-        <i class="ti ti-tool"></i>
+        <span class="step-num">03 · Our role</span>
+        
         <h3>We install</h3>
-        <p>Everything installed in under 1 hour. No disruption to your care schedule or the client's routine.</p>
+        <p>Everything is set up in under an hour. No disruption to your care schedule or the client's daily routine.</p>
       </div>
       <div class="card-green">
-        <span class="step-badge">Everyone wins</span>
-        <i class="ti ti-bell"></i>
-        <h3>Family stays informed</h3>
-        <p>Real-time alerts go to a family member or caregivers phone anywhere in the country. Informed families worry less and trust in your agency more.</p>
+        <span class="step-num">04 · Everyone wins</span>
+        
+        <h3>Families stay informed</h3>
+        <p>Real-time alerts reach family members anywhere in the world. Informed families worry less and trust your agency more.</p>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 6: FAQ -->
-  <section class="sec-white" id="faq">
+  <!-- FAQ -->
+  <section class="sec-green" id="faq">
     <span class="section-label">Common questions from agency directors</span>
     <h2>We've heard your concerns</h2>
     <p class="section-sub">Straight answers to what directors ask us most.</p>
     <div class="faq-grid">
       <div class="faq-item">
         <p class="faq-q">"Are there cameras involved?"</p>
-        <p class="faq-a">Absolutely not. Our smart devices are entirely passive 
-          and unobtrusive your clients simply live their normal lives without any cameras, recording devices, 
-          or anything that feels invasive. Privacy and dignity are at the core of how we operate.</p>
+        <p class="faq-a">Absolutely not. Our system is entirely passive — motion sensors and door sensors only. No cameras, no recording, nothing invasive. Privacy and dignity are at the core of everything we do.</p>
       </div>
       <div class="faq-item">
         <p class="faq-q">"What if a sensor has an issue?"</p>
@@ -605,22 +718,21 @@
       </div>
       <div class="faq-item">
         <p class="faq-q">"Does this create liability for us?"</p>
-        <p class="faq-a">No. We make no health claims. Bekway is a family notification service, not a clinical tool. Your agency simply refers.</p>
+        <p class="faq-a">No. We make no health claims. Bekway is a family notification service, not a clinical tool. Your agency simply refers — nothing more.</p>
       </div>
       <div class="faq-item">
         <p class="faq-q">"What does my team do day to day?"</p>
-        <p class="faq-a">Your team simply refers clients and reviews activity insights that support better care decisions. We handle all technology setup, family onboarding, and technical support — your care team stays focused on what they do best.</p>
+        <p class="faq-a">Almost nothing. Your team's only role is the referral conversation. We handle consultation, installation, family onboarding, and all ongoing support from there.</p>
       </div>
       <div class="faq-item">
         <p class="faq-q">"What sensors do you use?"</p>
-        <p class="faq-a">We use enterprise-grade wireless sensors specifically selected for reliability, long battery life, 
-          and performance in older homes with weak WiFi so your clients never experience technical disruptions.</p>
+        <p class="faq-a">Enterprise-grade wireless sensors built for reliability and long battery life — including in older homes with weak WiFi. Your clients will never experience technical disruptions.</p>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 7: FORM -->
-  <section class="sec-green" id="contact">
+  <!-- FORM -->
+  <section class="sec-white" id="contact">
     <div class="form-wrap">
       <h2>Ready to offer families something more?</h2>
       <p>Schedule a free 20-minute demo. We'll walk you through the system and make it easy to get started. No commitment required.</p>
@@ -631,21 +743,21 @@
         </div>
         <input type="tel" placeholder="Phone number" name="phone" required />
         <input type="email" placeholder="Email address" name="email" required />
-        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:13px;">
-          Request my free demo <i class="ti ti-arrow-right"></i>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:14px;">
+          Request a free demo 
         </button>
       </form>
       <p class="form-note">We respond to all requests within 24 hours.</p>
     </div>
   </section>
 
-  <!-- SECTION 8: FOOTER -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-logo">Bek<span>way</span></div>
     <div class="footer-tag">Healthcare Solutions · Houston, TX</div>
     <div class="footer-links">
       <a href="#why-partner">Why partner</a>
-      <a href="#how-it-works">How it works</a>      
+      <a href="#how-it-works">How it works</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </div>
