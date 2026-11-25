@@ -1,221 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bekway — Monitoring Solutions for Property & Food Safety</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bekway Health | Audit, denial recovery and HIPAA risk assessments for independent practices</title>
+<meta name="description" content="Bekway Health helps independent medical practices, physical therapy clinics and home health agencies stop clawbacks, recover denied claims and document HIPAA compliance.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['"IBM Plex Sans"', 'system-ui', '-apple-system', 'Segoe UI', 'Arial', 'sans-serif'] },
+  colors: { bg:'var(--bg)', surface:'var(--surface)', ink:'var(--ink)', muted:'var(--muted)', line:'var(--line)', accent:'var(--accent)', accenth:'var(--accent-h)', navy:'#0f2133' }
+}}};
+</script>
 <style>
-  :root {
-    --bg: #FFFFFF; --bg-soft: #F5F7F6; --line: #E2E7E4;
-    --ink: #1C2624; --ink-soft: #4E5C58; --ink-faint: #8A9793;
-    --teal: #1F7A6C; --teal-deep: #14544A; --amber: #C0741E;
-    --font: 'Inter', -apple-system, sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --bg: #101615; --bg-soft: #161E1C; --line: #263230; --ink: #ECF1EF; --ink-soft: #A9B7B3; --ink-faint: #74807C; --teal: #3FA593; --teal-deep: #245F53; --amber: #E3A44B; }
-  }
-  :root[data-theme="dark"] { --bg: #101615; --bg-soft: #161E1C; --line: #263230; --ink: #ECF1EF; --ink-soft: #A9B7B3; --ink-faint: #74807C; --teal: #3FA593; --teal-deep: #245F53; --amber: #E3A44B; }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-  a { color: inherit; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
-  p { max-width: 68ch; }
-  header { border-bottom: 1px solid var(--line); }
-  .header-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 20px 28px; gap: 20px; }
-  .header-right { justify-self: end; }
-  .logo { font-weight: 800; font-size: 1.2rem; text-decoration: none; color: var(--ink); }
-  .nav-toggle { display: flex; gap: 10px; justify-self: center; }
-  .nav-pill { font-family: var(--font); font-weight: 700; font-size: 0.9rem; padding: 9px 18px; border-radius: 30px; border: 1px solid var(--line); background: var(--bg); color: var(--ink-soft); cursor: pointer; text-decoration: none; transition: all 0.2s; }
-  .nav-pill:hover { border-color: var(--ink-faint); color: var(--ink); }
-  .nav-pill.active { background: var(--teal); border-color: var(--teal); color: #fff; }
-  .nav-pill.active[data-tab="restaurant"] { background: var(--amber); border-color: var(--amber); }
-  .btn-cta { font-weight: 700; background: var(--teal); color: #fff; padding: 11px 20px; text-decoration: none; font-size: 0.9rem; border-radius: 4px; white-space: nowrap; }
-
-  .hero { padding: 76px 0 50px; text-align: center; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-  .hero-bg .wash { position: absolute; inset: 0; background: radial-gradient(circle at 18% 15%, rgba(31,122,108,0.10), transparent 55%), radial-gradient(circle at 85% 25%, rgba(192,116,30,0.09), transparent 50%); }
-  .hero > .wrap { position: relative; z-index: 1; }
-  .hero h1 { font-weight: 800; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.2; margin: 0 auto 20px; max-width: 20ch; }
-  .hero-lede { color: var(--ink-soft); font-size: 1.08rem; margin: 0 auto 40px; max-width: 60ch; }
-
-  .section-head { text-align: center; margin-bottom: 34px; }
-  .section-head h2 { font-weight: 800; font-size: clamp(1.6rem, 2.8vw, 2rem); margin: 0; }
-
-  .solutions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; padding-bottom: 70px; }
-  @media (max-width: 760px) { .solutions-grid { grid-template-columns: 1fr; } }
-  .panel-card { border: 1px solid var(--line); border-radius: 10px; padding: 36px; background: var(--bg-soft); text-align: left; display: flex; flex-direction: column; }
-  .panel-eyebrow { font-size: 0.85rem; font-weight: 700; margin-bottom: 10px; color: var(--teal); }
-  .panel-card.amber .panel-eyebrow { color: var(--amber); }
-  .panel-card h2 { font-weight: 800; font-size: clamp(1.6rem, 2.8vw, 2rem); margin: 0 0 14px; }
-  .panel-desc { color: var(--ink-soft); font-size: 1.02rem; margin: 0 0 28px; max-width: 640px; }
-  .panel-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
-  @media (max-width: 600px) { .panel-stats { grid-template-columns: 1fr; } }
-  .panel-stat { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; }
-  .panel-stat .num { font-weight: 800; font-size: 1.5rem; color: var(--teal); }
-  .panel-card.amber .panel-stat .num { color: var(--amber); }
-  .panel-stat .lbl { font-size: 0.8rem; color: var(--ink-soft); margin-top: 4px; }
-  .panel-actions { margin-top: auto; }
-  .panel-actions .btn-primary.amber { background: var(--amber); }
-
-  .btn-primary { font-weight: 700; background: var(--teal); color: #fff; border: none; padding: 14px 24px; font-size: 0.96rem; cursor: pointer; text-decoration: none; border-radius: 4px; display: inline-block; }
-
-  .final-cta { padding: 70px 0; text-align: center; background: var(--bg-soft); border-top: 1px solid var(--line); }
-  .final-cta h2 { font-weight: 800; font-size: clamp(1.7rem, 3vw, 2.2rem); margin: 0 0 12px; }
-  .final-cta p.lede-note { color: var(--ink-soft); font-size: 1rem; margin: 0 auto 30px; max-width: 50ch; }
-  .form-wrap { background: var(--bg); border-radius: 14px; padding: 2.5rem; max-width: 540px; margin: 0 auto; border: 1px solid var(--line); text-align: left; }
-  .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
-  .form-wrap input[type="text"], .form-wrap input[type="email"], .form-wrap input[type="tel"], .form-wrap select, .form-wrap textarea {
-    width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); font-family: var(--font); font-size: 0.95rem; color: var(--ink); margin-bottom: 10px; outline: none; transition: border-color 0.2s;
-  }
-  .form-wrap textarea { resize: vertical; min-height: 80px; }
-  .form-wrap input:focus, .form-wrap select:focus, .form-wrap textarea:focus { border-color: var(--teal); }
-  .form-wrap button.btn-primary { width: 100%; justify-content: center; border: none; margin-top: 4px; }
-  .final-cta p.note { color: var(--ink-faint); font-size: 0.88rem; margin: 16px auto 0; }
-
-  footer { padding: 30px 0; border-top: 1px solid var(--line); }
-  .footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; font-size: 0.85rem; color: var(--ink-faint); }
-  .footer-links { display: flex; gap: 20px; }
-  .footer-links a { color: var(--ink-soft); cursor: pointer; text-decoration: none; }
-
-  @media (max-width: 860px) {
-    nav.primary-nav { display: none; }
-    .panel-card { padding: 26px; }
-  }
+:root{--bg:#f3f6f8;--surface:#ffffff;--ink:#0f2133;--muted:#51606f;--line:#d5dde4;--accent:#0f766e;--accent-h:#115e59;--field:#ffffff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0a1622;--surface:#122234;--ink:#e8eef3;--muted:#9fb0bf;--line:#26394c;--accent:#2a9d8f;--accent-h:#37b3a4;--field:#0a1622}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0a1622;--surface:#122234;--ink:#e8eef3;--muted:#9fb0bf;--line:#26394c;--accent:#2a9d8f;--accent-h:#37b3a4;--field:#0a1622}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px);scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:10}
+.btn{background:var(--accent);color:#fff;font-weight:600;border-radius:4px;transition:background .15s}
+.btn:hover{background:var(--accent-h)}
+.btn-dark-text{color:#fff}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #5eead4;outline-offset:2px}
+.field{background:var(--field);border:1px solid var(--line);color:var(--ink);border-radius:4px;width:100%;padding:.7rem .8rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
-<body>
+<body class="antialiased">
 
-<header>
-  <div class="header-inner">
-    <a href="#top" class="logo">Bekway</a>
-    <div class="nav-toggle">
-      <a class="nav-pill" href="/property/">Bekway Property</a>
-      <a class="nav-pill" href="/restaurant/">Bekway Restaurant</a>
-    </div>
-    <div class="header-right">
-      <a class="btn-cta" href="#contact">Get in touch</a>
-    </div>
+<header class="sticky z-20 bg-surface border-b border-line" style="top:env(safe-area-inset-top,0px)">
+  <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="#top" class="font-bold text-2xl tracking-tight text-ink" aria-label="Bekway Health home"><span class="text-accent">B</span>ekway</a>
+    <nav class="flex items-center gap-5 text-sm font-medium" aria-label="Primary">
+      <a href="#services" class="hidden sm:inline text-muted hover:text-ink">Services</a>
+      <a href="#how" class="hidden sm:inline text-muted hover:text-ink">How it works</a>
+      <a href="#contact" class="btn px-4 py-2">Request audit</a>
+    </nav>
   </div>
 </header>
 
-<section class="hero" id="top">
-  <div class="hero-bg">
-    <div class="wash"></div>
-    <svg viewBox="0 0 1100 340" preserveAspectRatio="xMidYMid slice" style="width:100%; height:100%; opacity:0.5;">
-      <g stroke="#1F7A6C" stroke-width="1" opacity="0.35">
-        <line x1="90" y1="60" x2="230" y2="130"/>
-        <line x1="230" y1="130" x2="180" y2="240"/>
-        <line x1="230" y1="130" x2="380" y2="90"/>
-        <line x1="380" y1="90" x2="520" y2="170"/>
-        <line x1="520" y1="170" x2="470" y2="280"/>
-        <line x1="520" y1="170" x2="660" y2="110"/>
-      </g>
-      <g stroke="#C0741E" stroke-width="1" opacity="0.3">
-        <line x1="660" y1="110" x2="800" y2="180"/>
-        <line x1="800" y1="180" x2="760" y2="290"/>
-        <line x1="800" y1="180" x2="950" y2="130"/>
-        <line x1="950" y1="130" x2="1020" y2="230"/>
-      </g>
-      <g fill="#1F7A6C" opacity="0.55">
-        <circle cx="90" cy="60" r="5"/>
-        <circle cx="230" cy="130" r="6"/>
-        <circle cx="180" cy="240" r="4"/>
-        <circle cx="380" cy="90" r="5"/>
-        <circle cx="520" cy="170" r="6"/>
-        <circle cx="470" cy="280" r="4"/>
-      </g>
-      <g fill="#C0741E" opacity="0.5">
-        <circle cx="660" cy="110" r="5"/>
-        <circle cx="800" cy="180" r="6"/>
-        <circle cx="760" cy="290" r="4"/>
-        <circle cx="950" cy="130" r="5"/>
-        <circle cx="1020" cy="230" r="4"/>
-      </g>
-    </svg>
-  </div>
-  <div class="wrap">
-    <h1>We turn sensor data into the alert that matters.</h1>
-    <p class="hero-lede">Bekway builds monitoring systems that catch problems before they become expensive — for the properties and kitchens you're responsible for. One core capability, applied wherever it matters.</p>
+<main id="top">
+<!-- Hero -->
+<section class="bg-navy text-white">
+  <div class="max-w-6xl mx-auto px-5 py-16 md:py-24">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight max-w-3xl">Stop losing revenue to clawbacks, denials and compliance gaps.</h1>
+    <p class="mt-6 text-lg text-slate-300 max-w-2xl leading-relaxed">Bekway Health is a lean technical consultancy for independent medical practices, physical therapy clinics and home health agencies. We offer three focused services: charting audits before you submit, recovery of denied claims, and HIPAA security risk assessments.</p>
+    <div class="mt-9 flex flex-wrap items-center gap-4">
+      <a href="#contact" class="btn btn-dark-text px-6 py-3.5 text-base">Request a free practice audit</a>
+      <a href="#services" class="text-slate-200 underline underline-offset-4 decoration-slate-500 hover:text-white">Compare the three services</a>
+    </div>
+    <p class="mt-10 text-sm text-slate-400 max-w-2xl border-t border-slate-700 pt-5">Built for practice managers, directors of nursing and clinic owners. We work with operational data only, and we do not serve patients or consumers.</p>
   </div>
 </section>
 
-<section id="solutions" style="padding-top: 0;">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 style="text-align:center;">Solutions</h2>
-    </div>
-    <div class="solutions-grid">
+<!-- Services -->
+<section id="services" class="max-w-6xl mx-auto px-5 py-16 md:py-20">
+  <h2 class="text-2xl md:text-3xl font-bold">Find the problem you’re dealing with</h2>
+  <p class="mt-3 text-muted max-w-2xl">Each service stands alone, with its own scope and its own price. Start with the one that matches your biggest administrative headache.</p>
 
-      <div class="panel-card">
-        <div class="panel-eyebrow">BEKWAY PROPERTY</div>
-        <h2>Whole-property monitoring for landlords &amp; multifamily owners</h2>
-        <p class="panel-desc">Leak, door access, and energy consumption monitoring across your units, watched around the clock — so a slow leak, an unsecured door, or a failing appliance doesn't turn into a five-figure problem.</p>
-        <div class="panel-stats">
-          <div class="panel-stat"><div class="num">&lt;1 hr</div><div class="lbl">Average install time per unit</div></div>
-          <div class="panel-stat"><div class="num">24/7</div><div class="lbl">Continuous monitoring</div></div>
-          <div class="panel-stat"><div class="num">$15/mo</div><div class="lbl">Starting price per door</div></div>
-        </div>
-        <div class="panel-actions">
-          <a class="btn-primary" href="/property/" target="_blank" rel="noopener">See Bekway Property</a>
-        </div>
+  <div class="mt-10 grid gap-6 lg:grid-cols-3">
+    <article class="bg-surface border border-line rounded flex flex-col" id="charting">
+      <div class="p-6 flex-1">
+        <p class="text-sm font-semibold text-accent">For home health agencies</p>
+        <h3 class="mt-1 text-xl font-bold">Home health charting audits</h3>
+        <p class="mt-3 text-muted leading-relaxed">Documentation gaps are expensive to find after the claim is paid. We check nurse notes before submission, so problems get fixed while the visit is still fresh.</p>
+        <ul class="mt-5 space-y-2.5 text-sm">
+          <li class="flex gap-2.5"><span class="text-accent font-bold" aria-hidden="true">✓</span>Automated pre-submission review of visit notes against documentation requirements</li>
+          <li class="flex gap-2.5"><span class="text-accent font-bold" aria-hidden="true">✓</span>Flags missing or conflicting details for clinician follow-up</li>
+          <li class="flex gap-2.5"><span class="text-accent font-bold" aria-hidden="true">✓</span>Lower exposure to Medicare clawbacks and payment reviews</li>
+        </ul>
       </div>
-
-      <div class="panel-card amber">
-        <div class="panel-eyebrow">BEKWAY RESTAURANT</div>
-        <h2>Cold storage monitoring for restaurants &amp; food service</h2>
-        <p class="panel-desc">Continuous temperature monitoring across your walk-ins, reach-ins, and prep coolers — so a drifting cooler is a repair call, not a spoiled inventory loss or a failed inspection.</p>
-        <div class="panel-stats">
-          <div class="panel-stat"><div class="num">&lt;90 min</div><div class="lbl">Full kitchen install</div></div>
-          <div class="panel-stat"><div class="num">24/7</div><div class="lbl">Continuous monitoring</div></div>
-          <div class="panel-stat"><div class="num">$22/mo</div><div class="lbl">Starting price per unit</div></div>
-        </div>
-        <div class="panel-actions">
-          <a class="btn-primary amber" href="/restaurant/" target="_blank" rel="noopener">See Bekway Restaurant</a>
-        </div>
+      <div class="border-t border-line p-6">
+        <p class="text-2xl font-bold text-center">$1,250<span class="text-base font-medium text-muted"> / month retainer</span></p>
+        <a href="#contact" data-service="Home Health Charting Audits" class="svc-link mt-4 block text-center btn px-4 py-3">Audit my charting</a>
       </div>
+    </article>
 
-    </div>
+    <article class="bg-surface border border-line rounded flex flex-col" id="denials">
+      <div class="p-6 flex-1">
+        <p class="text-sm font-semibold text-accent">For practices and clinics</p>
+        <h3 class="mt-1 text-xl font-bold">Denial Recovery</h3>
+        <p class="mt-3 text-muted leading-relaxed">Old rejected claims sit in the aging report because your staff is busy with today’s work. We work them for you and only get paid when money comes in.</p>
+        <ul class="mt-5 space-y-2.5 text-sm">
+          <li class="flex gap-2.5"><span class="text-accent font-bold" aria-hidden="true">✓</span>Review of aged and rejected claims for recoverable value</li>
+          <li class="flex gap-2.5"><span class="text-accent font-bold" aria-hidden="true">✓</span>Corrections, resubmissions and appeals handled by us</li>
+          <li class="flex gap-2.5"><span class="text-accent font-bold" aria-hidden="true">✓</span>No upfront cost and no fee if nothing is recovered</li>
+        </ul>
+      </div>
+      <div class="border-t border-line p-6">
+        <p class="text-2xl font-bold text-center">20%<span class="text-base font-medium text-muted"> of funds recovered, nothing else</span></p>
+        <a href="#contact" data-service="Denial Recovery" class="svc-link mt-4 block text-center btn px-4 py-3">Review my denials</a>
+      </div>
+    </article>
+
+    <article class="bg-surface border border-line rounded flex flex-col" id="sra">
+      <div class="p-6 flex-1">
+        <p class="text-sm font-semibold text-accent">For every covered practice</p>
+        <h3 class="mt-1 text-xl font-bold">HIPAA security risk assessments</h3>
+        <p class="mt-3 text-muted leading-relaxed">If an auditor or insurer asks for your risk assessment, you should be able to hand it over in minutes. We build the documentation so you can.</p>
+        <ul class="mt-5 space-y-2.5 text-sm">
+          <li class="flex gap-2.5"><span class="text-accent font-bold" aria-hidden="true">✓</span>Turnkey annual Security Risk Assessment documentation</li>
+          <li class="flex gap-2.5"><span class="text-accent font-bold" aria-hidden="true">✓</span>Inventory of your administrative, physical and technical safeguards</li>
+          <li class="flex gap-2.5"><span class="text-accent font-bold" aria-hidden="true">✓</span>An organized compliance binder, ready for review</li>
+        </ul>
+      </div>
+      <div class="border-t border-line p-6">
+        <p class="text-2xl font-bold text-center">$750<span class="text-base font-medium text-muted"> setup</span></p>
+        <a href="#contact" data-service="HIPAA Security Risk Assessment" class="svc-link mt-4 block text-center btn px-4 py-3">Start my assessment</a>
+      </div>
+    </article>
   </div>
 </section>
 
-<section class="final-cta" id="contact">
-  <div class="wrap">
-    <h2>Not sure which solution fits?</h2>
-    <p class="lede-note">Tell us what you need covered and we'll point you to the right solution, or set up a quick call.</p>
-    <div class="form-wrap">
-      <form action="https://formspree.io/f/mnjrogzo" method="POST">
-        <div class="input-row">
-          <input type="text" placeholder="Your name" name="name" required />
-          <input type="text" placeholder="Company / property name" name="company" />
-        </div>
-        <select name="interest" required>
-          <option value="">What do you need covered?</option>
-          <option value="property">Rental property or portfolio</option>
-          <option value="restaurant">Restaurant / commercial kitchen</option>
-        </select>
-        <input type="tel" placeholder="Phone number" name="phone" required />
-        <input type="email" placeholder="Email address" name="email" required />
-        <input type="hidden" name="_subject" value="New inquiry — Bekway" />
-        <button type="submit" class="btn-primary">Send</button>
-      </form>
-    </div>
-    <p class="note">We respond to all requests within 24 hours.</p>
+<!-- How it works -->
+<section id="how" class="bg-surface border-y border-line">
+  <div class="max-w-6xl mx-auto px-5 py-16 md:py-20">
+    <h2 class="text-2xl md:text-3xl font-bold">How it works</h2>
+    <p class="mt-3 text-muted max-w-2xl">No software to install and no long implementation. You send a small sample and we show you what we find.</p>
+    <ol class="mt-10 grid gap-8 md:grid-cols-3">
+      <li class="border-l-4 border-accent pl-5">
+        <p class="text-sm font-semibold text-accent">Step 1</p>
+        <h3 class="mt-1 text-lg font-bold">Send sanitized sample data</h3>
+        <p class="mt-2 text-muted leading-relaxed">Share a small batch of notes, claims or policies with patient identifiers removed. We tell you exactly what to include.</p>
+      </li>
+      <li class="border-l-4 border-accent pl-5">
+        <p class="text-sm font-semibold text-accent">Step 2</p>
+        <h3 class="mt-1 text-lg font-bold">Review your vulnerability report</h3>
+        <p class="mt-2 text-muted leading-relaxed">You get a plain-language report of what we found, what it is likely costing you, and what to fix first. It’s yours to keep, whether or not we work together.</p>
+      </li>
+      <li class="border-l-4 border-accent pl-5">
+        <p class="text-sm font-semibold text-accent">Step 3</p>
+        <h3 class="mt-1 text-lg font-bold">We automate and manage the fix</h3>
+        <p class="mt-2 text-muted leading-relaxed">If you want help, we put the service in place and run it. Your team gets time back instead of another system to learn.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
-<footer>
-  <div class="footer-inner">
-    <span>© 2026 Bekway</span>
-    <div class="footer-links">
-      <a href="/property/">Bekway Property</a>
-      <a href="/restaurant/">Bekway Restaurant</a>
+<!-- Trust -->
+<section class="bg-navy text-white">
+  <div class="max-w-6xl mx-auto px-5 py-16 md:py-20 grid gap-10 lg:grid-cols-5">
+    <div class="lg:col-span-2">
+      <h2 class="text-2xl md:text-3xl font-bold">Your data is handled like it matters, because it does.</h2>
+      <p class="mt-4 text-slate-300 leading-relaxed">We are a compliance-minded firm. We keep what we handle to the minimum needed, and we put the paperwork in place before anything sensitive changes hands.</p>
     </div>
+    <dl class="lg:col-span-3 grid sm:grid-cols-2 gap-x-8 gap-y-7">
+      <div><dt class="font-semibold">Start with sanitized data</dt><dd class="mt-1.5 text-sm text-slate-300 leading-relaxed">Your first audit uses samples with identifiers removed, so no protected health information has to leave your building.</dd></div>
+      <div><dt class="font-semibold">Business associate agreement</dt><dd class="mt-1.5 text-sm text-slate-300 leading-relaxed">We sign a BAA before any engagement that involves protected health information.</dd></div>
+      <div><dt class="font-semibold">Minimum necessary access</dt><dd class="mt-1.5 text-sm text-slate-300 leading-relaxed">We only touch the data a service requires, and only for as long as the work takes.</dd></div>
+      <div><dt class="font-semibold">Encrypted transfer and storage</dt><dd class="mt-1.5 text-sm text-slate-300 leading-relaxed">Files move through secure channels, not email attachments, and are removed when the engagement ends.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="max-w-6xl mx-auto px-5 py-16 md:py-20 grid gap-12 lg:grid-cols-2">
+  <div>
+    <h2 class="text-2xl md:text-3xl font-bold">Request your free practice audit</h2>
+    <p class="mt-4 text-muted leading-relaxed max-w-md">Tell us who you are and which problem is costing you the most. We’ll reply within one business day with next steps and what to send.</p>
+    <a href="#book" id="book" class="mt-6 inline-block font-semibold text-accent underline underline-offset-4 hover:text-accenth">Prefer to talk? Book a 20-minute call</a>
+    <p class="mt-8 text-sm text-muted max-w-md">Please don’t include patient names or other protected health information in this form.</p>
+  </div>
+
+  <form id="leadForm" class="bg-surface border border-line rounded p-6 space-y-4" novalidate>
+    <div>
+      <label for="name" class="block text-sm font-semibold mb-1.5">Your name</label>
+      <input class="field" id="name" name="name" type="text" autocomplete="name" required>
+    </div>
+    <div>
+      <label for="practice" class="block text-sm font-semibold mb-1.5">Practice name</label>
+      <input class="field" id="practice" name="practice" type="text" autocomplete="organization" required>
+    </div>
+    <div>
+      <label for="email" class="block text-sm font-semibold mb-1.5">Work email</label>
+      <input class="field" id="email" name="email" type="email" autocomplete="email" required>
+    </div>
+    <div>
+      <label for="service" class="block text-sm font-semibold mb-1.5">Service of interest</label>
+      <select class="field" id="service" name="service">
+        <option>Home Health Charting Audits</option>
+        <option>Denial Recovery</option>
+        <option>HIPAA Security Risk Assessment</option>
+        <option>Not sure yet</option>
+      </select>
+    </div>
+    <button type="submit" class="btn w-full px-5 py-3.5 text-base">Request a free practice audit</button>
+    <p id="formMsg" class="text-sm text-muted" role="status" aria-live="polite"></p>
+  </form>
+</section>
+</main>
+
+<footer class="bg-navy text-slate-400 text-sm">
+  <div class="max-w-6xl mx-auto px-5 py-8 flex flex-col sm:flex-row justify-between gap-3">
+    <p>© 2026 Bekway Health. Operational, compliance and denial recovery consulting for independent healthcare practices.</p>
+    <p><a class="hover:text-white" href="mailto:hello@bekwayhealth.com">hello@bekwayhealth.com</a></p>
   </div>
 </footer>
 
+<script>
+// Pre-select the service when a card button is clicked
+document.querySelectorAll('.svc-link').forEach(function (a) {
+  a.addEventListener('click', function () {
+    var sel = document.getElementById('service');
+    if (sel) sel.value = a.getAttribute('data-service');
+  });
+});
+// Opens the visitor's email app with the details filled in. Replace with your form service or CRM endpoint when live.
+document.getElementById('leadForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var f = e.target, msg = document.getElementById('formMsg');
+  if (!f.name.value.trim() || !f.practice.value.trim() || !/^\S+@\S+\.\S+$/.test(f.email.value)) {
+    msg.textContent = 'Please enter your name, practice name and a valid work email.';
+    return;
+  }
+  var body = 'Name: ' + f.name.value + '\nPractice: ' + f.practice.value + '\nEmail: ' + f.email.value + '\nService: ' + f.service.value;
+  msg.textContent = 'Opening your email app with your request. If nothing opens, email hello@bekwayhealth.com.';
+  window.location.href = 'mailto:hello@bekwayhealth.com?subject=' + encodeURIComponent('Practice audit request: ' + f.practice.value) + '&body=' + encodeURIComponent(body);
+});
+</script>
 </body>
 </html>
